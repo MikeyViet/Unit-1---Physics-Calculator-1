@@ -93,7 +93,17 @@ void processMainMenuSelection(char selection)
                 break;
       case 'M': cout << "\nYou selected option M: Calculate Motion." << endl;
                 displayMotionSubMenu();
-                motionSelection = validateInt(motionSelection);
+
+                do
+                  {
+                    cout << "Please Enter a number between 1 - 4: ";
+                    motionSelection = validateInt(motionSelection);
+                    if(motionSelection < 1 || motionSelection > 4)
+                    {
+                      cout << "Number entered is not within range." << endl;
+                    }
+                    }while(motionSelection < 1 || motionSelection > 4);
+        
                 processMotionMenuSelection(motionSelection);
                 break;
       case 'F': cout << "\nYou selected option F: Calculate Force." << endl;
@@ -165,11 +175,11 @@ void calculateVelocity()
   dt = validateDouble(dt);
   cout << "Please enter the unit of measurement for time (ie. min, hour, sec): ";
   tUnits = validateString(tUnits);
-  cout << "\nWith a distance of " << ds << " and time of " << dt << ", the velocity is " << fixed << setprecision(4) << color << ds/dt << sUnits << "/" << tUnits << reset << endl;
+  cout << "\nWith a distance of " << ds << " and time of " << dt << ", the velocity is " << fixed << setprecision(4) << color << ds/dt << " " << sUnits << "/" << tUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl << endl;
   cout << fixed << setprecision(2) << "                    ds     " << ds << sUnits << endl;
-  cout << "              v = ------ = ------ = " << fixed << setprecision(4) << color << ds/dt << sUnits << "/" << tUnits << reset << endl;
+  cout << "              v = ------ = ------ = " << fixed << setprecision(4) << color << ds/dt << " " << sUnits << "/" << tUnits << reset << endl;
   cout << fixed << setprecision(2) << "                    dt     " << dt << tUnits << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
@@ -192,18 +202,18 @@ void calculateAcceleration()
   cout << endl;
   cout << "Please enter a value of type double for velocity (dv): ";
   dv = validateDouble(dv);
-  cout << "Please enter the unit of measurement for velocity (ie. ): ";
+  cout << "Please enter the unit of measurement for velocity (ie. m/s): ";
   vUnits = validateString(vUnits);
   cout << "Please enter a value of type double for the time (dt): ";
   dt = validateDouble(dt);
   cout << "Please enter the unit of measurement for time (ie. min, hour, sec): ";
   tUnits = validateString(tUnits);
-  cout << "\nWith a velocity of " << dv << " and time of " << dt << ", the accleration is " << fixed << setprecision(4) << color << dv/dt << vUnits << "/" << tUnits << reset << endl;
+  cout << "\nWith a velocity of " << dv << " and time of " << dt << ", the accleration is " << fixed << setprecision(4) << color << dv/dt << " " << vUnits << "/" << tUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl << endl;
-  cout << fixed << setprecision(2) << "                    dv     " << dv << vUnits << endl;
-  cout << fixed << setprecision(4) << "              a = ------ = ------ = " << color << dv/dt << vUnits << "/" << tUnits << reset << endl;
-  cout << fixed << setprecision(2) << "                    dt     " << dt << tUnits << endl;
+  cout << fixed << setprecision(2) << "                    dv     " << dv << " " << vUnits << endl;
+  cout << fixed << setprecision(4) << "              a = ------ = ------ = " << color << dv/dt << " " << vUnits << "/" << tUnits << reset << endl;
+  cout << fixed << setprecision(2) << "                    dt     " << dt << " " << tUnits << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
 }
@@ -223,16 +233,16 @@ void calculateForce()
   cout << endl;
   cout << "Please enter a value of type double for mass (m): ";
   m = validateDouble(m);
-  cout << "Please enter the unit of measurement for mass (ie. ): ";
+  cout << "Please enter the unit of measurement for mass (ie. lb, kg): ";
   mUnits = validateString(mUnits);
   cout << "Please enter a value of type double for the acceleration (a): ";
   a = validateDouble(a);
-  cout << "Please enter the unit of measurement for time (ie. min, hour, sec): ";
+  cout << "Please enter the unit of measurement for time (ie. m/s): ";
   aUnits = validateString(aUnits);
   cout << "\nWith a mass of " << m << " and acceleration of " << a << ", the Force is " << fixed << setprecision(4) << color << m*a << mUnits << " " << aUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
-  cout << fixed << setprecision(2) << "              F = m * a = " << m << " * " << a << " = " << fixed << setprecision(4) << color << m*a << mUnits << " " << aUnits << reset << endl;
+  cout << fixed << setprecision(2) << "              F = m * a = " << m << " * " << a << " = " << fixed << setprecision(4) << color << m*a << " " << mUnits << " " << aUnits << reset << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
 }
@@ -252,16 +262,16 @@ void calculateWeight()
   cout << endl;
   cout << "Please enter a value of type double for mass (m): ";
   m = validateDouble(m);
-  cout << "Please enter the unit of measurement for mass (ie. ): ";
+  cout << "Please enter the unit of measurement for mass (ie. lb, kg): ";
   mUnits = validateString(mUnits);
   cout << "Please enter a value of type double for the gravity (g): ";
   g = validateDouble(g);
-  cout << "Please enter the unit of measurement for gravity: ";
+  cout << "Please enter the unit of measurement for gravity (ie. m/s): ";
   gUnits = validateString(gUnits);
-  cout << "\nWith a mass of " << m << " and gravity of " << g << ", the Weight is " << fixed << setprecision(4) << color << m*g << mUnits << " " << gUnits << reset << endl;
+  cout << "\nWith a mass of " << m << " and gravity of " << g << ", the Weight is " << fixed << setprecision(4) << color << m*g << " " << mUnits << " " << gUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
-  cout << fixed << setprecision(2) << "              W = m * g = " << m << " * " << g << " = " << fixed << setprecision(4) << color << m*g << mUnits << " " << gUnits << reset << endl;
+  cout << fixed << setprecision(2) << "              W = m * g = " << m << " * " << g << " = " << fixed << setprecision(4) << color << m*g << " " << mUnits << " " << gUnits << reset << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
 }
@@ -281,16 +291,16 @@ void calculateMomentum()
   cout << endl;
   cout << "Please enter a value of type double for mass (m): ";
   m = validateDouble(m);
-  cout << "Please enter the unit of measurement for mass (ie. ): ";
+  cout << "Please enter the unit of measurement for mass (ie. kg, lb): ";
   mUnits = validateString(mUnits);
   cout << "Please enter a value of type double for the velocity (v): ";
   v = validateDouble(v);
-  cout << "Please enter the unit of measurement for velocity: ";
+  cout << "Please enter the unit of measurement for velocity (ie. m/s): ";
   vUnits = validateString(vUnits);
-  cout << "\nWith a mass of " << m << " and velocity of " << v << ", the Momentum is " << fixed << setprecision(4) << color << m*v << mUnits << " " << vUnits << reset << endl;
+  cout << "\nWith a mass of " << m << " and velocity of " << v << ", the Momentum is " << fixed << setprecision(4) << color << m*v << " " << mUnits << " " << vUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
-  cout << fixed << setprecision(2) << "              P = m * v = " << m << " * " << v << " = " << fixed << setprecision(4) << color << m*v << mUnits << " " << vUnits << reset << endl;
+  cout << fixed << setprecision(2) << "              P = m * v = " << m << " * " << v << " = " << fixed << setprecision(4) << color << m*v << " " << mUnits << " " << vUnits << reset << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
 }
@@ -304,7 +314,6 @@ void calculateMotion1()
   double a = 0.0;     //acceleration
   string aUnits = ""; //unit of measurement for acceleration
   string tUnits = ""; //unit of measurement for time
-  string vUnits = ""; //unit of measurement for velocity
 
   cout << "The First Equation of Motion solving for final velocity (V) is below: " << endl;
   cout << endl;
@@ -312,20 +321,18 @@ void calculateMotion1()
   cout << endl;
   cout << "Please enter a value of type double for initial velocity (Vo): ";
   Vo = validateDouble(Vo);
-  cout << "Please enter the unit of measurement for initial velocity (ie. ): ";
-  vUnits = validateString(vUnits);
   cout << "Please enter a value of type double for the time (t): ";
   t = validateDouble(t);
-  cout << "Please enter the unit of measurement for time: ";
+  cout << "Please enter the unit of measurement for time (ie. hr, min, sec): ";
   tUnits = validateString(tUnits);
   cout << "Please enter a value of type double for the acceleration (a): ";
   a = validateDouble(a);
-  cout << "Please enter the unit of measurement for acceleration: ";
+  cout << "Please enter the unit of measurement for acceleration (ie. m/s): ";
   aUnits = validateString(aUnits);
-  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and time of " << t << ", the final velocity is " << fixed << setprecision(4) << color << Vo+(a*t) << vUnits << " " << aUnits << tUnits << reset << endl;
+  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and time of " << t << ", the final velocity is " << fixed << setprecision(4) << color << Vo+(a*t) << " " << aUnits << " " << tUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
-  cout << fixed << setprecision(2) << "              V = Vo + at = " << Vo << " + (" << a << " * " << t << ") = " << fixed << setprecision(4) << color << Vo+(a*t) << vUnits << " " << aUnits << " " << tUnits << reset << endl;
+  cout << fixed << setprecision(2) << "              V = Vo + at = " << Vo << " + (" << a << " * " << t << ") = " << fixed << setprecision(4) << color << Vo+(a*t) << " " << aUnits << " " << tUnits << reset << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
 }
@@ -338,9 +345,7 @@ void calculateMotion2()
   double t = 0.0;     //time
   double a = 0.0;     //acceleration
   double So = 0.0;     //initial Position
-  string aUnits = ""; //unit of measurement for acceleration
-  string tUnits = ""; //unit of measurement for time
-  string vUnits = ""; //unit of measurement for velocity
+  string sUnits = ""; //unit of measurement for position
 
   cout << "The Second Equation of Motion solving for Position (P) is below: " << endl;
   cout << endl;
@@ -350,25 +355,19 @@ void calculateMotion2()
   cout << endl;
   cout << "Please enter a value of type double for initial velocity (Vo): ";
   Vo = validateDouble(Vo);
-  cout << "Please enter the unit of measurement for initial velocity (ie. ): ";
-  vUnits = validateString(vUnits);
   cout << "Please enter a value of type double for the time (t): ";
   t = validateDouble(t);
-  cout << "Please enter the unit of measurement for time: ";
-  tUnits = validateString(tUnits);
   cout << "Please enter a value of type double for the acceleration (a): ";
   a = validateDouble(a);
-  cout << "Please enter the unit of measurement for acceleration: ";
-  aUnits = validateString(aUnits);
   cout << "Please enter a value of type double for the initial position (So): ";
   So = validateDouble(So);
-  cout << "Please enter the unit of measurement for acceleration: ";
-  //aUnits = validateString(aUnits);
-  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and time of " << t << ", the final velocity is " << fixed << setprecision(4) << color << Vo+(a*t) << vUnits << " " << aUnits << " " << tUnits << reset << endl;
+  cout << "Please enter the unit of measurement for change of position: ";
+  sUnits = validateString(sUnits);
+  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and time of " << t << ", the total displacement is " << fixed << setprecision(4) << color << So + ((Vo + ((a/2)*t)) * t) << " " << sUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
   cout << "                              1" << endl;
-  cout << fixed << setprecision(0) << "              S = So + Vot + --- at = "<< So << " + (" << Vo << ")(" << t << ") + 1/2 (" << a << ")(" << t << ") = " << setprecision(4) << color << So + ((Vo + ((a/2)*t)) * t) << reset << endl;
+  cout << fixed << setprecision(0) << "              S = So + Vot + --- at = "<< So << " + (" << Vo << ")(" << t << ") + 1/2 (" << a << ")(" << t << ") = " << setprecision(4) << color << So + ((Vo + ((a/2)*t)) * t) << " " << sUnits << reset << endl;
   cout << "                              2" << endl;
   cout << endl;
   cout << endl;
@@ -384,7 +383,6 @@ void calculateMotion3()
   double ds = 0.0;    //change in position
   string aUnits = ""; //unit of measurement for acceleration
   string sUnits = ""; //unit of measurement for position
-  string vUnits = ""; //unit of measurement for velocity
 
   cout << "The Third Equation of Motion solving for Velocity Squared (V^2) is below: " << endl;
   cout << endl;
@@ -392,21 +390,19 @@ void calculateMotion3()
   cout << endl;
   cout << "Please enter a value of type double for initial velocity (Vo): ";
   Vo = validateDouble(Vo);
-  cout << "Please enter the unit of measurement for initial velocity (ie. ): ";
-  vUnits = validateString(vUnits);
   cout << "Please enter a value of type double for the change in position (ds): ";
   ds = validateDouble(ds);
-  cout << "Please enter the unit of measurement for change in position: ";
+  cout << "Please enter the unit of measurement for change in position (ie. km, mi): ";
   sUnits = validateString(sUnits);
   cout << "Please enter a value of type double for the acceleration (a): ";
   a = validateDouble(a);
-  cout << "Please enter the unit of measurement for acceleration: ";
+  cout << "Please enter the unit of measurement for acceleration (ie. m/s): ";
   aUnits = validateString(aUnits);
   //aUnits = validateString(aUnits);
-  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and change in position of " << ds << ", the velocity squared is " << fixed << setprecision(4) << color << pow(Vo,2) + 2 * a * ds << vUnits << " " << aUnits << " " << sUnits << reset << endl;
+  cout << "\nWith an initial velocity of " << Vo << ", acceleration of " << a << ", and change in position of " << ds << ", the velocity squared is " << fixed << setprecision(4) << color << pow(Vo,2) + 2 * a * ds << " " << aUnits << " " << sUnits << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
-  cout << fixed << setprecision(0) << "              V^2 = (Vo)^2 + 2(a)(ds) = (" << Vo << ")^2 + 2(" << a << ")(" << ds << ") = " << setprecision(4) << color << pow(Vo,2) + 2 * a * ds << vUnits << " " << aUnits << sUnits << reset << endl;
+  cout << fixed << setprecision(0) << "              V^2 = (Vo)^2 + 2(a)(ds) = (" << Vo << ")^2 + 2(" << a << ")(" << ds << ") = " << setprecision(4) << color << pow(Vo,2) + 2 * a * ds << " " << aUnits << " " << sUnits << reset << endl;
   cout << endl;
   cout << endl;
   cout << "---------------------------------------------------------------------" << endl << endl;
@@ -435,11 +431,11 @@ void calculateMotion4()
   sUnits = validateString(sUnits);
   cout << "Please enter the unit of measurement for time (ie. hr, min, s): ";
   tUnits = validateString(tUnits);
-  cout << "\nWith an initial velocity of " << Vo << " and final velocity of " << V << ", the average velocity is " << fixed << setprecision(4) << color << (V + Vo)/2 << sUnits << "/" << tUnits << " " << reset << endl;
+  cout << "\nWith an initial velocity of " << Vo << " and final velocity of " << V << ", the average velocity is " << fixed << setprecision(4) << color << (V + Vo)/2 << " " << sUnits << "/" << tUnits << " " << reset << endl;
   cout << "Plugging in the values entered results in the following formula:" << endl;
   cout << endl;
   cout << "              _    1              1" << endl;
-  cout << "              V = --- (V + Vo) = --- (" << V << " + " << Vo << ") = " << fixed << setprecision(4) << color << (V + Vo)/2 << sUnits << "/" << tUnits << " " << reset << endl;
+  cout << "              V = --- (V + Vo) = --- (" << V << " + " << Vo << ") = " << fixed << setprecision(4) << color << (V + Vo)/2 << " " << sUnits << "/" << tUnits << " " << reset << endl;
   cout << "                   2              2" << endl; 
   cout << endl;
   cout << endl;
