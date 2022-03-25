@@ -15,6 +15,7 @@
 int main() {
 
   displayMenu();
+
   displayMotionSubMenu();
 
   return 0;
