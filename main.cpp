@@ -10,13 +10,32 @@
 *    options to calculate several physics formulas. 
 *    
 *********************************************************************/
+#include<iostream>
 #include "functions.h"
 
 int main() {
 
-  displayMenu();
+  
+  //Change-Reset Color borrowed from Dr. T's Starter Code. (thank you sir)
+  string option = ""; //the option local to int main()
+  string color = "\x1b[" + to_string(32) + ";1m";
+  string reset = "\x1b[0m";
+  char menuOption;
 
-  displayMotionSubMenu();
+  do
+    {
+      
+    displayMenu();
+      
+    cout << "Please Select and Option. " << endl;
+    
+    menuOption = validateChar(menuOption);
+
+    processMainMenuSelection(menuOption);
+
+    }while(toupper(menuOption) != 'E');
 
   return 0;
+
+  
 }
