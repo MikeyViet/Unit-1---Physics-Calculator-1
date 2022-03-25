@@ -14,7 +14,6 @@
 #include "functions.h"
 
 int main() {
-
   
   //Change-Reset Color borrowed from Dr. T's Starter Code. (thank you sir)
   string option = ""; //the option local to int main()
@@ -22,18 +21,22 @@ int main() {
   string reset = "\x1b[0m";
   char menuOption;
 
+  
   do
     {
       
     displayMenu();
       
     cout << "Please Select and Option. " << endl;
-    
+
+    cout << color;
     menuOption = validateChar(menuOption);
+    cout << reset;
 
     processMainMenuSelection(menuOption);
 
     }while(toupper(menuOption) != 'E');
-  
+
   return 0;
+
 }

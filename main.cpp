@@ -13,8 +13,8 @@
 #include<iostream>
 #include "functions.h"
 
-int main() {
 
+int main() {
   
   //Change-Reset Color borrowed from Dr. T's Starter Code. (thank you sir)
   string option = ""; //the option local to int main()
@@ -22,20 +22,30 @@ int main() {
   string reset = "\x1b[0m";
   char menuOption;
 
+  //The code will continue looping while the input character 
+  // does not equal 'e' or 'E'
   do
     {
-      
+    //Display Main Menu to the screen
     displayMenu();
-      
-    cout << "Please Select and Option. " << endl;
-    
-    menuOption = validateChar(menuOption);
 
+    //Prompt User for Initial Input
+    cout << "Please Select and Option. " << endl;
+
+    cout << color;  //Change color of text
+      
+    //Validate user input
+    menuOption = validateChar(menuOption);
+    
+    cout << reset;  //Reset color of text
+
+    //Makes selection in menu from the user input
     processMainMenuSelection(menuOption);
 
     }while(toupper(menuOption) != 'E');
 
-  return 0;
-
   
+  return 0;
+  
+
 }
